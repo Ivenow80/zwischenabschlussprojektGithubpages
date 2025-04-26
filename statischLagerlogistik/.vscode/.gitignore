@@ -1,14 +1,27 @@
-# Ignore IDE and editor files
+# Node.js dependencies
+node_modules/
+
+# Log-Dateien
+*.log
+
+# Temporäre Dateien von Texteditoren (z.B. VS Code, Sublime)
 .vscode/
 .idea/
 
-# Ignore OS-specific files
-.DS_Store       # macOS
-Thumbs.db       # Windows
+# MacOS System-Dateien
+.DS_Store
 
-# Ignore temporary or backup files
-*.swp           # vim swap files
-*.swo           # vim swap files
-*.bak           # Backup files
-*.tmp           # Temporary files
+# Windows System-Dateien
+Thumbs.db
+
+# Python Bytecode-Dateien
+*.pyc
+
+# Build-Ordner (falls du ein Frontend-Framework verwendest)
+dist/
+build/
+
+# Ignoriere `.gitignore` selbst (falls du dies möchtest)
+.gitignore
+
 
