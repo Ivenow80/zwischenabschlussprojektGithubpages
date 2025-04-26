@@ -1,0 +1,14 @@
+# Ignore IDE and editor files
+.vscode/
+.idea/
+
+# Ignore OS-specific files
+.DS_Store       # macOS
+Thumbs.db       # Windows
+
+# Ignore temporary or backup files
+*.swp           # vim swap files
+*.swo           # vim swap files
+*.bak           # Backup files
+*.tmp           # Temporary files
+
