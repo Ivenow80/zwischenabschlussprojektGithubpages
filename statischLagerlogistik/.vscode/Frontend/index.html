@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zusammengeführte Seite mit Sektionen</title>
+<!-------------------------------------------------------------------------------->
+
+ <!-- Dein eingebautes CSS für Sections -->
+    <style>
+        section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+<!-------------------------------------------------------------------------------->
+
+   /* CSS für den Spinner */
+   #loading-spinner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(127, 159, 58, 0.7); /* Halbtransparenter Hintergrund */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            border: 4px solid #c62c2c; /* Leicht grauer Hintergrund */
+            border-top: 4px solid #6cc958; /* Blaue Farbe für den Spinner */
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+        }
+
+
+        /* Spinner-Animation */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+
+
+    </style>
+
+<!---------------------------------------------------------------------------------->
+
+<!--animationssenbindung-->
+    <link rel="stylesheet" href="css/animations.css">
+<!---------------------------------------------------------------------------------->
+
+ <!-- Deine neuen externen CSS-Dateien -->
+    <link rel="stylesheet" href="css/Loginseite_Lager.css">
+    <link rel="stylesheet" href="css/Startseite.css">
+    <link rel="stylesheet" href="css/Lagerbestand.css">
+    <link rel="stylesheet" href="css/Lagertabelle.css">
+
+</head>
+<body>
+<!--------------------------------------------------------------------------------->
+
+    
+<!-- Spinner beim Laden -->
+<div id="loading-spinner">
+    <div id="loading-spinner">
+        <img src="logo_aktuell.png" alt="logo_aktuell" class="spinner-logo">
+      </div>
+      
+  </div>
+
+ <!-- Dein Skript am Ende des Body -->
+    <script src="js/script.js"></script>
+<!--------------------------------------------------------------------------------->
+
+ <!-- Hier beginnt der sichtbare Inhalt -->
+    <section class="logo-section">
+        <div class="logo-container">
+            <img src="logo_aktuell.png" alt="logo_aktuell">
+            <h1>Willkommen!</h1>
+        </div>
+    </section>
+<!---------------------------------------------------------------------------------->
+
+
+ <!--code injected by live server-->
+    <section class="form-section">
+        <div class="form-container">
+        <img src="././logo_aktuell.png" alt="logo_aktuell">
+            <h2>Login</h2>
+            <form>
+                <input type="text" placeholder="Benutzername">
+                <input type="password" placeholder="Passwort">
+                <input type="submit" value="Einloggen">
+            </form>
+        </div>
+    </section>
+
+    <section class="footer-section">
+        <div class="footer-container">
+            <p>&copy; 2025 Deine Firma</p>
+            <a href="#">Impressum</a>
+            <br
+            <a href="#">ceate by Ivonne Franke </a>
+        </div>
+    </section>
+
+</body>
+</html>
+
+    <!------------------------------------------------------------------------------------>
+ <!-- Erste Section (Inhalt aus logo_neu) 
+    <section>
+        <img src="logo_neu.png" alt="Mein neues Logo">
+    </section><!-- Schließendes Tag für die erste Sektion -->
+
+    <!------------------------------------------------------------------------------------>
+
+    <!-- Erste Section (Inhalt aus logo_neu) -->
+       <section id="logo-section">
+        <div class="logo-aktuell">
+          <img src="./logo_aktuell.png" alt="logo_aktuell">
+          <h1>Erstanmeldung!</h1>
+        </div>
+      </section>
+
+      <!---------------------------------------------------------------------------------->
+
+    <!-- zweite Sektion (Inhalt aus Login lager.html) -->
+     <section id="section1">
+        <div class="app-container">
+            <!-- Firmenlogo -->
+            <div class="logo_aktuell">
+                <img src="../../logo_aktuell.png" alt="logo_aktuell" />
+            </div>
+     <!----------------------------------------------------------------------------------->
+
+     <!-- Haupt-Zurück-Button -->
+            <button id="backButtonMain">Zurück zur Neuanmeldeseite</button>
+
+            <h1>Login</h1>
+            <h2>L A G E R - L O G I S T I K</h2>
+    <!------------------------------------------------------------------------------------>
+
+    <!-- QR Code Bereich -->
+            <div class="qr-code">
+                <h3>QR Code für Lagerbestandsseite</h3>
+                <div id="qrcode"></div>
+                <p id="timestamp"></p>
+                <button id="regenButton">Jetzt QR-Code neu generieren</button>
+            </div>
+    <!----------------------------------------------------------------------------------->
+
+     <!-- Login-Formular -->
+            <form id="login-form" onsubmit="return handleLogin(event)">
+                <label for="personalnummer">Personalnummer:</label>
+                <input type="text" id="personalnummer" name="personalnummer" required />
+
+                <label for="login-password">Passwort:</label>
+                <input type="password" id="login-password" name="login-password" required />
+
+                <input type="submit" value="Login" />
+            </form>
+            <a href="#" id="forgot-password-link" onclick="handleForgotPassword()">Passwort vergessen?</a>
+    <!------------------------------------------------------------------------------------>
+
+    <!-- Passwort erstellen Formular (versteckt standardmäßig) -->
+            <div id="password-reset-form" style="display: none;">
+                <h3>Neues Passwort erstellen</h3>
+                <form id="reset-password-form" onsubmit="return resetPassword(event)">
+                    <label for="generated-password">Generiertes Passwort:</label>
+                    <input type="text" id="generated-password" readonly />
+                    <br /><br />
+                    <label for="new-password">Neues Passwort:</label>
+                    <input type="password" id="new-password" name="new-password" required />
+                    <br /><br />
+                    <label for="confirm-password">Passwort bestätigen:</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required />
+                    <br /><br />
+                    <input type="submit" value="Passwort erstellen" />
+                </form>
+
+                <!-- Zurück-Button im Passwort-Reset-Formular -->
+                <button id="backButton">Zurück zur Neuanmeldeseite</button>
+            </div>
+        </div>
+
+        <!-- Verlinkung des eigenen JavaScript-Codes -->
+        <script src="Loginseite_Lager.js"></script>
+
+        <!-- Einbindung der QR-Code-Bibliothek -->
+        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs/qrcode.min.js"></script>
+
+        <script>
+            // Event-Listener für den Haupt-Zurück-Button
+            document.getElementById("backButtonMain").addEventListener("click", () => {
+                const userConfirmed = confirm("Sie gehen jetzt zurück zur Neuanmeldeseite. Möchten Sie fortfahren?");
+                
+                // Wenn der Benutzer "OK" klickt, weiter zur Neuanmeldeseite
+                if (userConfirmed) {
+                    window.location.href = "../../Startseite/Startseite.html"; // Hier den tatsächlichen Pfad zur Neuanmeldeseite angeben
+                }
+            });
+
+            // Event-Listener für den Zurück-Button im Passwort-Reset-Formular
+            document.getElementById("backButton").addEventListener("click", () => {
+                const userConfirmed = confirm("Sie gehen jetzt zurück zur Neuanmeldeseite. Möchten Sie fortfahren?");
+                
+                // Wenn der Benutzer "OK" klickt, weiter zur Neuanmeldeseite
+                if (userConfirmed) {
+                    window.location.href = "../Startseite/Startseite.html"; // Hier den tatsächlichen Pfad zur Neuanmeldeseite angeben
+                }
+            });
+
+            // QR-Code für Lagerbestandsseite generieren
+            const generateQRCode = () => {
+                const qrCodeContainer = document.getElementById("qrcode");
+                const lagerBestandsURL = "https://http://127.0.0.1:5500/firmen-app_frontend/src/Lagerbestand/Lagerbestand.html"; // URL zur Lagerbestandsseite
+
+                qrCodeContainer.innerHTML = ""; // Entferne alten QR-Code
+                new QRCode(qrCodeContainer, {
+                    text: lagerBestandsURL,
+                    width: 100,
+                    height: 100,
+                });
+
+                const timestamp = new Date();
+                updateTimestamp(timestamp);
+            };
+
+            // Aktualisiere die Anzeige der Zeit
+            const updateTimestamp = (timestamp) => {
+                const formattedTime = timestamp.toLocaleTimeString("de-DE", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                });
+                document.getElementById("timestamp").textContent = `Letzte Generierung: ${formattedTime}`;
+            };
+
+            // Timer, um alle 2 Stunden den QR-Code neu zu generieren
+            const startQRCodeTimer = () => {
+                generateQRCode(); // Initialer QR-Code
+                setInterval(generateQRCode, 2 * 60 * 60 * 1000); // Alle 2 Stunden
+            };
+
+            // Manuelles Neu-Generieren durch Button
+            document.getElementById("regenButton").addEventListener("click", () => {
+                generateQRCode();
+            });
+
+            // Initialisieren der QR-Code-Funktionalität
+            window.onload = startQRCodeTimer;
+
+            // Funktion zur Handhabung des Login-Formulars
+            function handleLogin(event) {
+                event.preventDefault();
+
+                const enteredPersonalnummer = document.getElementById("personalnummer").value;
+                const enteredPassword = document.getElementById("login-password").value;
+
+                // Abrufen der gespeicherten Personalnummer und Passwort aus localStorage
+                const storedPersonalnummer = localStorage.getItem("personalnummer");
+                const storedPassword = localStorage.getItem("loginPassword");
+
+                if (
+                    enteredPersonalnummer === storedPersonalnummer &&
+                    enteredPassword === storedPassword
+                ) {
+                    alert("Login erfolgreich! Willkommen zur Lagerlogistik-App.");
+                    window.location.href = "../Lagerbestand.html"; // Weiterleitung zur Startseite
+                } else {
+                    alert("Ungültige Anmeldedaten. Bitte versuchen Sie es erneut.");
+                }
+            }
+
+            // Funktion zum Handhaben von "Passwort vergessen"
+            function handleForgotPassword() {
+                alert("Bitte erstelle ein neues Passwort.");
+                
+                // Zeige das Formular zur Passwortgenerierung
+                document.getElementById("password-reset-form").style.display = "block";
+
+                // Generiere ein neues Passwort
+                const newGeneratedPassword = Math.random().toString(36).slice(-8);
+                document.getElementById("generated-password").value = newGeneratedPassword;
+            }
+
+            // Funktion zum Zurücksetzen des Passworts
+            function resetPassword(event) {
+                event.preventDefault();
+
+                const newPassword = document.getElementById("new-password").value;
+                const confirmPassword = document.getElementById("confirm-password").value;
+
+                if (newPassword !== confirmPassword) {
+                    alert("Die Passwörter stimmen nicht überein. Bitte erneut eingeben.");
+                    return;
+                }
+
+                // Speichere das neue Passwort im localStorage
+                const personalnummer = document.getElementById("personalnummer").value;
+                localStorage.setItem("personalnummer", personalnummer);
+                localStorage.setItem("loginPassword", newPassword);
+
+                alert("Ihr neues Passwort wurde erfolgreich erstellt!");
+                window.location.href = "../Lagertabelle.html"; // Weiterleitung nach erfolgreichem Reset
+            }
+        </script>
+    </section> <!-- Schließendes Tag für die zweiten Section -->
+
+<!------------------------------------------------------------------------------------------------------------------------------->
+
+  <!-- Dritte Section (Inhalt aus Startseite.html) -->
+<section id="section1">
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Firmenlogo -->
+        <div class="logo_aktuell">
+            <img src="../../Logo/logo_aktuell.png" alt="Logo" class="logo_aktuell"/>
+        </div>
+
+        <h1>Erstanmeldung</h1>
+
+        <!-- Registrierung Formular -->
+        <form id="registration-form" onsubmit="return handleLogin(event)">
+            <label for="otp-username">Mitarbeiter/Vor- und Nachname:</label>
+            <input type="text" id="otp-username" name="otp-username" required>
+            <br><br>
+
+            <label for="otp-personalnummer">Personalnummer:</label>
+            <input type="text" id="otp-personalnummer" name="otp-personalnummer" required>
+            <br><br>
+
+            <label for="otp-password">Eingabe generiertes einmal Passwort:</label>
+            <input type="password" id="otp-password" name="otp-password" required>
+            <br><br>
+            <input type="submit" value="Login">
+        </form>
+
+        <!-- Button zur Erstanmeldung -->
+        <button id="erstanmeldung-button" onclick="generateOneTimePassword()">Einmaliges Passwort generieren</button>
+        <div id="generated-password" style="display: none;">
+            <p id="otp-display"></p>
+        </div>
+
+        <!-- Passwort erstellen Formular (versteckt standardmäßig) -->
+        <div id="password-creation-form" style="display: none;">
+            <h3>Bitte neues Passwort erstellen</h3>
+            <form id="create-password-form" onsubmit="return saveNewPassword(event)">
+                <label for="new-password">Neues Passwort:</label>
+                <input type="password" id="new-password" name="new-password" required>
+                <br><br>
+                <label for="confirm-password">Passwort bestätigen:</label>
+                <input type="password" id="confirm-password" name="confirm-password" required>
+                <br><br>
+                <input type="submit" value="Passwort erstellen">
+            </form>
+        </div>
+
+        <!-- Passwort vergessen Link -->
+        <p><a href="#" id="forgot-password-link" onclick="forgotPassword()">Passwort vergessen?</a></p>
+        
+        <!-- Array der Benutzerinformationen -->
+        <div id="user-info" style="display: none;">
+            <h3>Benutzerinformationen</h3>
+            <p id="user-info-message"></p>
+        </div>
+
+    </div>
+
+    <script>
+        // Funktion zum Generieren eines Einmalpassworts
+        function generateOneTimePassword() {
+            const otp = Math.random().toString(36).slice(-8); // Einfach generiertes Passwort
+            document.getElementById('otp-display').innerText = `Ihr Einmal-Passwort: ${otp}`;
+            document.getElementById('generated-password').style.display = 'block';
+        }
+
+        // Funktion zur Handhabung der Login-Eingabe
+        function handleLogin(event) {
+            event.preventDefault();
+            const enteredPassword = document.getElementById('otp-password').value;
+            const displayedOtp = document.getElementById('otp-display').innerText.split(': ')[1];
+
+            if (enteredPassword === displayedOtp) {
+                alert('Einmaliges Passwort korrekt. Bitte erstellen Sie ein neues Passwort.');
+                
+                // Zeigt das Formular zum Erstellen eines neuen Passworts
+                document.getElementById('password-creation-form').style.display = 'block';
+
+                // Benutzerinformationen (Array) wird angezeigt
+                const userInfo = {
+                    username: document.getElementById('otp-username').value,
+                    personalnummer: document.getElementById('otp-personalnummer').value,
+                    message: 'Bitte erstellen Sie ein neues Passwort!'
+                };
+                
+                // Zeigt die Benutzerinformationen und die Nachricht an
+                document.getElementById('user-info-message').innerText = 
+                    `Benutzername: ${userInfo.username}\nPersonalnummer: ${userInfo.personalnummer}\nNachricht: ${userInfo.message}`;
+                
+                document.getElementById('user-info').style.display = 'block';
+            } else {
+                alert('Ungültiges Passwort. Bitte versuchen Sie es erneut.');
+            }
+        }
+
+        // Funktion zum Speichern des neuen Passworts und Weiterleitung zur Login-Seite
+        function saveNewPassword(event) {
+            event.preventDefault();
+            const newPassword = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const personalNumber = document.getElementById('otp-personalnummer').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('Die Passwörter stimmen nicht überein. Bitte erneut eingeben.');
+                return;
+            }
+
+            // Speichern der Personalnummer und des neuen Passworts im localStorage
+            localStorage.setItem('personalnummer', personalNumber);
+            localStorage.setItem('loginPassword', newPassword);
+
+            console.log(`Passwort für Mitarbeiter mit Personalnummer ${personalNumber} gespeichert: ${newPassword}`);
+            alert('Neues Passwort erfolgreich gespeichert!');
+
+            // Weiterleitung zur Login-Seite
+            window.location.href = '../Loginseite_Lager/Loginseite_Lager.html'; // Weiterleitung zur Lagerseite
+        }
+
+        // Funktion für "Passwort vergessen"
+        function forgotPassword() {
+            alert("Bitte generieren Sie ein Einmalpasswort und erstellen Sie ein neues Passwort.");
+            
+            // Zeigt den Einmalpasswort-Generierungsbereich an
+            document.getElementById('generated-password').style.display = 'block';
+        }
+    </script>
+</section><!-- Schließendes Tag für die dritten Section -->
+
+<!---------------------------------------------------------------------------------------------------------------------->
+
+
+  <!-- vierte Section (Inhalt aus Lagertabelle.html) -->
+<section id="bestandstabelle-section">
+    <!-- Container für die Anwendung -->
+    <div class="app-container">
+      <!-- Firmenlogo -->
+      <div class="logo_aktuell">
+        <img src="../../Logo/logo_aktuell.png" alt="Firmenlogo" />
+      </div>
+  
+      <h2>Bestandstabelle</h2>
+  
+      <!-- Formular zum Hinzufügen von Zeilen -->
+      <form id="dataForm">
+        <!-- Eingabefelder für Position -->
+        <div class="form-group">
+          <label for="positionInput">Position:</label>
+          <input type="text" id="positionInput" name="positionInput" required />
+        </div>
+        
+        <!-- Eingabefelder für Artikelnummer -->
+        <div class="form-group">
+          <label for="artikelnummerInput">Artikelnummer:</label>
+          <input type="text" id="artikelnummerInput" name="artikelnummerInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Artikelbezeichnung -->
+        <div class="form-group">
+          <label for="artikelbezeichnungInput">Artikelbezeichnung:</label>
+          <input type="text" id="artikelbezeichnungInput" name="artikelbezeichnungInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Lager -->
+        <div class="form-group">
+          <label for="lagerInput">Lager:</label>
+          <input type="text" id="lagerInput" name="lagerInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Lagerplatz -->
+        <div class="form-group">
+          <label for="lagerplatzInput">Lagerplatz:</label>
+          <input type="text" id="lagerplatzInput" name="lagerplatzInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Lagerbestand -->
+        <div class="form-group">
+          <label for="lagerbestandInput">Lagerbestand:</label>
+          <input type="number" id="lagerbestandInput" name="lagerbestandInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Waren-Entnahme -->
+        <div class="form-group">
+          <label for="warenEntnahmeInput">Waren-Entnahme:</label>
+          <input type="number" id="warenEntnahmeInput" name="warenEntnahmeInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Ware hinzugefügt -->
+        <div class="form-group">
+          <label for="wareHinzugefuegtInput">Ware hinzugefügt:</label>
+          <input type="number" id="wareHinzugefuegtInput" name="wareHinzugefuegtInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Einheit -->
+        <div class="form-group">
+          <label for="einheitInput">Einheit:</label>
+          <input type="text" id="einheitInput" name="einheitInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Preis pro Einheit -->
+        <div class="form-group">
+          <label for="preisProEinheitInput">Preis pro Einheit:</label>
+          <input type="number" id="preisProEinheitInput" name="preisProEinheitInput" step="0.01" required />
+        </div>
+  
+        <!-- Eingabefelder für Wert Lagerbestand (disabled) -->
+        <div class="form-group">
+          <label for="wertLagerbestandInput">Wert Lagerbestand:</label>
+          <input type="number" id="wertLagerbestandInput" name="wertLagerbestandInput" step="0.01" disabled />
+        </div>
+  
+        <!-- Eingabefelder für Mindestmenge -->
+        <div class="form-group">
+          <label for="mindestmengeInput">Mindestmenge:</label>
+          <input type="number" id="mindestmengeInput" name="mindestmengeInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Nachbestellen (Checkbox) -->
+        <div class="form-group">
+          <label for="nachbestellenInput">Nachbestellen:</label>
+          <input type="checkbox" id="nachbestellenInput" name="nachbestellenInput" />
+        </div>
+  
+        <!-- Eingabefelder für Minimale Bestellmenge -->
+        <div class="form-group">
+          <label for="minimaleBestellmengeInput">Minimale Bestellmenge:</label>
+          <input type="number" id="minimaleBestellmengeInput" name="minimaleBestellmengeInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Lieferant -->
+        <div class="form-group">
+          <label for="lieferantInput">Lieferant:</label>
+          <input type="text" id="lieferantInput" name="lieferantInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Bestellmenge -->
+        <div class="form-group">
+          <label for="bestellmengeInput">Bestellmenge:</label>
+          <input type="number" id="bestellmengeInput" name="bestellmengeInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Nachbestellt am -->
+        <div class="form-group">
+          <label for="nachbestelltAmInput">Nachbestellt am:</label>
+          <input type="date" id="nachbestelltAmInput" name="nachbestelltAmInput" />
+        </div>
+  
+        <!-- Eingabefelder für Lieferzeit -->
+        <div class="form-group">
+          <label for="lieferzeitInput">Lieferzeit:</label>
+          <input type="number" id="lieferzeitInput" name="lieferzeitInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Mitarbeiter -->
+        <div class="form-group">
+          <label for="mitarbeiterInput">Mitarbeiter:</label>
+          <input type="text" id="mitarbeiterInput" name="mitarbeiterInput" required />
+        </div>
+  
+        <!-- Eingabefelder für Personalnummer -->
+        <div class="form-group">
+          <label for="personalnummerInput">Personalnummer:</label>
+          <input type="text" id="personalnummerInput" name="personalnummerInput" required />
+        </div>
+  
+        <!-- Hinzufügen-Button -->
+        <button type="submit">Hinzufügen</button>
+      </form>
+  
+      <!-- Dynamische Zeilen werden hier eingefügt -->
+      <table>
+        <thead>
+          <!-- Tabellenkopf hier, falls benötigt -->
+        </thead>
+        <tbody>
+          <!-- Hier werden dynamisch Zeilen mit Daten eingefügt -->
+        </tbody>
+      </table>
+  
+      <!-- Speicher- und Zurück-Buttons -->
+      <div class="button-group">
+        <button id="saveButton">Daten speichern</button>
+        <button id="backButton">Zurück</button>
+      </div>
+    </div>
+  
+    <!-- Verlinkung zur JavaScript-Datei -->
+    <script src="Lagerbestand.js"></script>
+  </section><!-- Schließendes Tag für die vierte Sektion -->
+  
+  <!----------------------------------------------------------------------------------------------------------------->
+
+      <!-- fünfte Section (Inhalt Firmenlogo )
+         <section id="logo-section">
+           <div class="logo_aktuell">
+             <img src="../../Logo/logo_aktuell.png" alt="Logo" />
+           </div>
+         </section>  -->
+   
+         <!--Section für den Titel der Seite -->
+         <section id="title-section">
+           <h1>Gespeicherte Lagerdaten</h1>
+         </section>             
+   
+         <!-- fünfte Section (inhalt Lagerdaten-Tabelle.html) -->
+         <section id="lagerdaten-table-section">
+           <table id="lagerTable">
+             <thead>
+               <tr>
+                 <th>Position</th>
+                 <th>Artikelnummer</th>
+                 <th>Artikel-Bezeichnung</th>
+                 <th>Lager</th>
+                 <th>Lagerplatz</th>
+                 <th>Lagerbestand</th>
+                 <th>Waren-Entnahme</th>
+                 <th>Ware hinzugefügt</th>
+                 <th>Einheit</th>
+                 <th>Preis pro Einheit</th>
+                 <th>Wert Lagerbestand</th>
+                 <th>Mindestmenge</th>
+                 <th>Nachbestellen</th>
+                 <th>Minimale Bestellmenge</th>
+                 <th>Lieferant</th>
+                 <th>Bestellmenge</th>
+                 <th>Nachbestellt am</th>
+                 <th>Lieferzeit</th>
+                 <th>Mitarbeiter</th>
+                 <th>Personalnummer</th>
+               </tr>
+             </thead>
+             <tbody>
+               <!-- Beispielzeile 1 -->
+               <tr>
+                 <td><input type="checkbox" class="select-row" /></td>
+                 <td>Artikel 1</td>
+                 <td>€10</td>
+                 <td>
+                   <button class="btn-delete" onclick="deleteRowDirectly(this)">
+                     Löschen
+                   </button>
+                 </td>
+               </tr>
+               <!-- Beispielzeile 2 -->
+               <tr>
+                 <td><input type="checkbox" class="select-row" /></td>
+                 <td>Artikel 2</td>
+                 <td>€20</td>
+                 <td>
+                   <button class="btn-delete" onclick="deleteRowDirectly(this)">
+                     Löschen
+                   </button>
+                 </td>
+               </tr>
+             </tbody>
+           </table>
+         </section>
+   
+         <!-- Section für die Buttons -->
+         <section id="button-section">
+           <div class="buttons">
+             <!-- Zurück-Button -->
+             <button onclick="goToLagerbestand()">Zurück</button>
+   
+             <!-- Ausgewählte löschen-Button -->
+             <button id="deleteSelected" onclick="deleteSelectedRows()">Ausgewählte löschen</button>
+           </div>
+         </section>
+   
+       </div>
+   
+       <!-- JavaScript-Dateien einbinden -->
+       <script src="Lagerspeicher.js"></script>
+       <script src="../Lagerbestand.js"></script>
+       <script src="../Loginseite_Lager/Loginstartseite.js"></script>
+     </body><!-- Schließendes Tag für die vierte Sektion -->
+   </html>
+   
